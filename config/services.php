@@ -14,6 +14,12 @@ return [
     |
     */
 
+    'place_to_pay' => [
+        'login' => env('PLACETOPAY_LOGIN'),
+        'tranKey' => env('PLACETOPAY_TRANKEY'),
+        'baseUrl' => env('PLACETOPAY_BASEURL'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

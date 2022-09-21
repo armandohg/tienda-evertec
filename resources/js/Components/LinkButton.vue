@@ -12,13 +12,10 @@ const props = defineProps({
 
 <template>
     <Link :href="href"
-          :class="[secondary ?
-                'border-gray-300 text-sky-600 bg-white hover:bg-sky-50' :
-                'border-transparent text-white bg-gray-500 hover:bg-sky-700'
-                ]"
-          class="inline-flex items-center px-3 py-2 border rounded-md shadow-sm
-        text-sm text-center leading-4 font-medium tracking-wide
-        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500">
+          class="w-full rounded-md border border-transparent bg-indigo-600
+          py-3 px-4 text-base font-medium text-white shadow-sm
+          hover:bg-indigo-700
+          focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
         <slot/>
     </Link>
 </template>

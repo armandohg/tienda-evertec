@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +15,18 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+    return inertia('Welcome');
+})->name('welcome');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// TODO: Restrict access via middlewares.
+Route::get('orders', [OrderController::class, 'index'])->name('order.index');
 
-require __DIR__.'/auth.php';
+Route::get('order', [OrderController::class, 'create'])->name('order.create');
+Route::post('order', [OrderController::class, 'store'])->name('order.store');
+
+Route::get('order/{order}', [OrderController::class, 'show'])->name('order.show');
+Route::get('order/{order}/payment', [OrderController::class, 'payment'])->name('order.payment');
+Route::get('order/{order}/process', [OrderController::class, 'processPayment'])->name('order.process_payment');
+
+
+require __DIR__ . '/auth.php';
